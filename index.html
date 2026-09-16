@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Math Quiz Assignment</title>
+    <style>
+        .answer-key {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #e8f5e9;
+            border-left: 4px solid green;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- START OF MATH TEST -->
+    <!-- START OF TEST -->
     <h1>Online Math Test</h1>
     <p>Please enter your name and complete the questions below.</p>
 
-    <form>
+    <form id="quizForm" onsubmit="showAnswers(event)">
         <!-- Name Section -->
         <p>
             <label for="name">Name:</label>
-            <input type="text" id="name" name="studentName">
+            <input type="text" id="name" name="studentName" required>
         </p>
 
         <hr>
@@ -30,6 +41,8 @@
         <input type="radio" id="q1c" name="q1" value="c">
         <label for="q1c">52</label><br>
 
+        <div id="ans1" class="answer-key">Correct Answer: 42 (15 &plus; 27 &equals; 42)</div>
+
         <!-- Question 2 -->
         <p>2. Solve for x: 8 &times; x &equals; 64</p>
         <input type="radio" id="q2a" name="q2" value="a">
@@ -40,6 +53,8 @@
         
         <input type="radio" id="q2c" name="q2" value="c">
         <label for="q2c">x = 8</label><br>
+
+        <div id="ans2" class="answer-key">Correct Answer: x = 8 (64 &divide; 8 &equals; 8)</div>
 
         <!-- Question 3 -->
         <p>3. Which symbol means "less than or equal to"?</p>
@@ -52,6 +67,8 @@
         <input type="radio" id="q3c" name="q3" value="c">
         <label for="q3c">&divide;</label><br>
 
+        <div id="ans3" class="answer-key">Correct Answer: &le;</div>
+
         <hr>
 
         <!-- Word Problem -->
@@ -60,13 +77,28 @@
         
         <textarea id="wordProblem" name="wordProblemAnswer" rows="4" cols="45"></textarea>
 
+        <div id="ans4" class="answer-key">Sample Solution: 5 apples &times; $2 &equals; $10 total. $10 &minus; $3 coupon &equals; $7 spent.</div>
+
         <br><br>
 
         <!-- Submit -->
         <input type="submit" value="Submit Test">
 
     </form>
-    <!-- END OF MATH TEST -->
+    <!-- END OF TEST -->
+
+    <script>
+        function showAnswers(event) {
+            // Prevents the page from refreshing on submit
+            event.preventDefault();
+
+            // Shows all answer keys when submit is clicked
+            let answers = document.querySelectorAll('.answer-key');
+            answers.forEach(function(ans) {
+                ans.style.display = 'block';
+            });
+        }
+    </script>
 
 </body>
 </html>
