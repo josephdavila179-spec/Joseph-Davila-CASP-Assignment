@@ -4,24 +4,67 @@
     <meta charset="UTF-8">
     <title>Math Quiz Assignment</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 650px;
+            margin: 20px auto;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        .code-tag {
+            color: #d9534f;
+            background-color: #f9f2f4;
+            padding: 4px 8px;
+            font-family: monospace;
+            font-weight: bold;
+            border-radius: 4px;
+            border: 1px solid #ebccd1;
+            display: inline-block;
+            margin: 10px 0;
+        }
         .answer-key {
             display: none;
-            color: green;
+            color: #155724;
+            background-color: #d4edda;
+            border: 2px solid #c3e6cb;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 5px;
             font-weight: bold;
-            margin-top: 10px;
-            padding: 8px;
-            background-color: #e8f5e9;
-            border-left: 4px solid green;
+        }
+        /* Animation when submit is clicked */
+        .pop-out {
+            display: block !important;
+            animation: pop 0.4s ease-out forwards;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            80% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        input[type="submit"] {
+            background-color: #0275d8;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #025aa5;
         }
     </style>
 </head>
 <body>
 
-    <!-- START OF TEST -->
+    <!-- START OF MATH TEST -->
+    <div class="code-tag">&lt;!-- START OF MATH TEST --&gt;</div>
+
     <h1>Online Math Test</h1>
     <p>Please enter your name and complete the questions below.</p>
 
-    <form id="quizForm" onsubmit="showAnswers(event)">
+    <form id="quizForm" onsubmit="revealAnswers(event)">
         <!-- Name Section -->
         <p>
             <label for="name">Name:</label>
@@ -31,7 +74,7 @@
         <hr>
 
         <!-- Question 1 -->
-        <p>1. What is 15 &plus; 27?</p>
+        <p><strong>1. What is 15 &plus; 27?</strong></p>
         <input type="radio" id="q1a" name="q1" value="a">
         <label for="q1a">32</label><br>
         
@@ -41,10 +84,12 @@
         <input type="radio" id="q1c" name="q1" value="c">
         <label for="q1c">52</label><br>
 
-        <div id="ans1" class="answer-key">Correct Answer: 42 (15 &plus; 27 &equals; 42)</div>
+        <div id="ans1" class="answer-key">✓ Correct Answer: 42 (15 &plus; 27 &equals; 42)</div>
+
+        <br>
 
         <!-- Question 2 -->
-        <p>2. Solve for x: 8 &times; x &equals; 64</p>
+        <p><strong>2. Solve for x: 8 &times; x &equals; 64</strong></p>
         <input type="radio" id="q2a" name="q2" value="a">
         <label for="q2a">x = 6</label><br>
         
@@ -54,10 +99,12 @@
         <input type="radio" id="q2c" name="q2" value="c">
         <label for="q2c">x = 8</label><br>
 
-        <div id="ans2" class="answer-key">Correct Answer: x = 8 (64 &divide; 8 &equals; 8)</div>
+        <div id="ans2" class="answer-key">✓ Correct Answer: x = 8 (64 &divide; 8 &equals; 8)</div>
+
+        <br>
 
         <!-- Question 3 -->
-        <p>3. Which symbol means "less than or equal to"?</p>
+        <p><strong>3. Which symbol means "less than or equal to"?</strong></p>
         <input type="radio" id="q3a" name="q3" value="a">
         <label for="q3a">&lt;</label><br>
         
@@ -67,17 +114,17 @@
         <input type="radio" id="q3c" name="q3" value="c">
         <label for="q3c">&divide;</label><br>
 
-        <div id="ans3" class="answer-key">Correct Answer: &le;</div>
+        <div id="ans3" class="answer-key">✓ Correct Answer: &le;</div>
 
         <hr>
 
         <!-- Word Problem -->
-        <p>4. Word Problem:</p>
+        <p><strong>4. Word Problem:</strong></p>
         <p>A store sells apples for $2 each. If Sarah buys 5 apples and uses a $3 coupon, how much money does she spend? Show your work below.</p>
         
-        <textarea id="wordProblem" name="wordProblemAnswer" rows="4" cols="45"></textarea>
+        <textarea id="wordProblem" name="wordProblemAnswer" rows="4" cols="50" placeholder="Type your answer here..."></textarea>
 
-        <div id="ans4" class="answer-key">Sample Solution: 5 apples &times; $2 &equals; $10 total. $10 &minus; $3 coupon &equals; $7 spent.</div>
+        <div id="ans4" class="answer-key">✓ Sample Solution: 5 apples &times; $2 &equals; $10 total. $10 &minus; $3 coupon &equals; $7 spent.</div>
 
         <br><br>
 
@@ -85,17 +132,19 @@
         <input type="submit" value="Submit Test">
 
     </form>
-    <!-- END OF TEST -->
+
+    <div class="code-tag">&lt;!-- END OF MATH TEST --&gt;</div>
+    <!-- END OF MATH TEST -->
 
     <script>
-        function showAnswers(event) {
-            // Prevents the page from refreshing on submit
+        function revealAnswers(event) {
+            // Stops form from reloading page
             event.preventDefault();
 
-            // Shows all answer keys when submit is clicked
+            // Finds all answer boxes and applies the pop-out animation
             let answers = document.querySelectorAll('.answer-key');
             answers.forEach(function(ans) {
-                ans.style.display = 'block';
+                ans.classList.add('pop-out');
             });
         }
     </script>
