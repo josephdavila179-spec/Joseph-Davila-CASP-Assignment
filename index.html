@@ -11,17 +11,6 @@
             padding: 20px;
             line-height: 1.5;
         }
-        .code-tag {
-            color: #d9534f;
-            background-color: #f9f2f4;
-            padding: 4px 8px;
-            font-family: monospace;
-            font-weight: bold;
-            border-radius: 4px;
-            border: 1px solid #ebccd1;
-            display: inline-block;
-            margin: 10px 0;
-        }
         .answer-key {
             display: none;
             color: #155724;
@@ -32,7 +21,6 @@
             border-radius: 5px;
             font-weight: bold;
         }
-        /* Animation when submit is clicked */
         .pop-out {
             display: block !important;
             animation: pop 0.4s ease-out forwards;
@@ -51,15 +39,11 @@
             font-size: 16px;
             cursor: pointer;
         }
-        input[type="submit"]:hover {
-            background-color: #025aa5;
-        }
     </style>
 </head>
 <body>
 
-    <START OF MATH TEST>
-    <div class="code-tag">&lt; START OF MATH TEST &gt;</div>
+    <!-- START OF MATH TEST -->
 
     <h1>Online Math Test</h1>
     <p>Please enter your name and complete the questions below.</p>
@@ -133,15 +117,11 @@
 
     </form>
 
-    <div class="code-tag">&lt; END OF MATH TEST &gt;</div>
-    <END OF MATH TEST>
+    <!-- END OF MATH TEST -->
 
     <script>
         function revealAnswers(event) {
-            // Stops form from reloading page
             event.preventDefault();
-
-            // Finds all answer boxes and applies the pop-out animation
             let answers = document.querySelectorAll('.answer-key');
             answers.forEach(function(ans) {
                 ans.classList.add('pop-out');
